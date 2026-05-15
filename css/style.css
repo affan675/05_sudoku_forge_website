@@ -1,0 +1,348 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    margin-left: var(--sidebar-width);
+    transition: margin-left var(--transition-speed);
+}
+
+h1, h2, h3 {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+h1 { font-size: 2.2rem; margin-bottom: 1rem; }
+h2 { font-size: 1.6rem; margin-bottom: 0.8rem; }
+h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+
+p { margin-bottom: 1rem; }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-primary,
+.btn-secondary {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+    margin: 0.25rem;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1e4e6e;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background: var(--bg-card);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.message {
+    margin: 1rem 0;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: 500;
+    min-height: 1.5rem;
+}
+
+.tagline {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* Sudoku Grid Styles */
+.sudoku-grid-container {
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.sudoku-table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-md);
+}
+
+.sudoku-table td {
+    border: 1px solid var(--grid-lines);
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-main);
+    position: relative;
+}
+
+.sudoku-table td input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 500;
+    background: transparent;
+    outline: none;
+    color: var(--text-main);
+    font-family: inherit;
+    caret-color: var(--primary);
+}
+
+.sudoku-table td input:focus {
+    background: rgba(44, 110, 158, 0.06);
+}
+
+.sudoku-table td.given {
+    background: #f0f4f8;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.sudoku-table tr:nth-child(3n) td {
+    border-bottom: 2px solid var(--primary);
+}
+
+.sudoku-table td:nth-child(3n) {
+    border-right: 2px solid var(--primary);
+}
+
+/* Quick Links / Card Grid */
+.quick-links h2 {
+    margin-bottom: 1.5rem;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.feature-card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: block;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.card-emoji {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.8rem;
+}
+
+/* Difficulty selector */
+.difficulty-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.diff-btn {
+    padding: 0.5rem 1.2rem;
+    border: 2px solid var(--primary);
+    background: transparent;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--primary);
+    transition: all 0.2s;
+}
+
+.diff-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+.diff-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+
+/* Learn page */
+.learn-card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    padding: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.strategy {
+    margin-bottom: 1.2rem;
+}
+
+/* Creator page */
+.creator-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.creator-card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    padding: 2.5rem;
+    text-align: center;
+    max-width: 480px;
+    width: 100%;
+}
+
+.creator-avatar .avatar-emoji {
+    font-size: 4rem;
+}
+
+.creator-details p {
+    margin: 0.3rem 0;
+}
+
+.vision-box {
+    margin: 1.5rem 0;
+    background: #f8fbff;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.typing-effect {
+    min-height: 1.5rem;
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+.builder-quote {
+    font-size: 1.1rem;
+    color: var(--secondary);
+    font-weight: 600;
+    margin: 1.2rem 0;
+    padding: 1rem;
+    border-left: 4px solid var(--secondary);
+    background: #fefaf0;
+    border-radius: 0 8px 8px 0;
+}
+
+.forge-tagline {
+    margin-top: 1.5rem;
+}
+
+.forge-logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.forge-tagline p {
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+/* Mini Sudoku */
+.mini-sudoku-table {
+    border-collapse: collapse;
+    margin: 1rem auto;
+}
+
+.mini-sudoku-table td {
+    border: 1px solid var(--grid-lines);
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.mini-sudoku-table td.given {
+    background: #f0f4f8;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.mini-cell-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    text-align: center;
+    font-size: 1.2rem;
+    font-family: inherit;
+    outline: none;
+    background: transparent;
+}
+
+.mini-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+/* Hide the system cursor on devices that support hover (mouse) */
+@media (hover: hover) and (pointer: fine) {
+    body {
+        cursor: none;
+    }
+}

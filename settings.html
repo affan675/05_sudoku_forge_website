@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SudokuForge – Settings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/cursor.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+</head>
+<body>
+    <div id="loader-overlay">
+        <div class="loader-spinner"></div>
+        <div class="loader-tip-box" id="tip-text">Loading tip...</div>
+    </div>
+
+    <div class="cursor" id="cursor-dot"></div>
+    <div class="cursor-trail" id="cursor-trail"></div>
+
+    <div class="app-container">
+        <aside id="sidebar-container"></aside>
+        <main class="main-content">
+            <div class="settings-placeholder">
+                <h1>⚙️ Settings</h1>
+                <div class="card">
+                    <p>✨ More options coming soon.</p>
+                    <p>We're working on custom themes, difficulty preferences, and more. Stay tuned!</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="components/sidebar.js"></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/loader.js" defer></script>
+    <script src="js/tab-switch.js" defer></script>
+    <script src="js/cycle.js" defer></script>
+    <script src="js/solve.js" defer></script>
+    <script src="js/ai_solver.js" defer></script>
+    <script src="js/creator.js" defer></script>
+</body>
+</html>

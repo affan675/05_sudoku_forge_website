@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SudokuForge – Learn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/cursor.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <style>
+        .strategy-list {
+            list-style: none;
+            padding: 0;
+        }
+        .strategy-item {
+            background: #f8faff;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+        .strategy-item h3 {
+            margin-bottom: 0.3rem;
+        }
+        .example-note {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+        }
+        .mini-sudoku-table td input {
+            font-size: 1.1rem;
+        }
+        .learn-section-title {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="loader-overlay">
+        <div class="loader-spinner"></div>
+        <div class="loader-tip-box" id="tip-text">Loading tip...</div>
+    </div>
+
+    <div class="cursor" id="cursor-dot"></div>
+    <div class="cursor-trail" id="cursor-trail"></div>
+
+    <div class="app-container">
+        <aside id="sidebar-container"></aside>
+        <main class="main-content">
+            <div class="learn-header">
+                <h1>📚 Learn Sudoku</h1>
+                <p class="tagline">Master the grid from basic rules to advanced techniques.</p>
+            </div>
+
+            <!-- BASIC RULES -->
+            <section class="learn-card">
+                <h2 class="learn-section-title">📋 Basic Rules</h2>
+                <p>Sudoku is played on a 9×9 grid, divided into nine 3×3 boxes.</p>
+                <ul style="list-style-type:disc; padding-left:1.5rem;">
+                    <li>Each <strong>row</strong> must contain the digits 1‑9 exactly once.</li>
+                    <li>Each <strong>column</strong> must contain the digits 1‑9 exactly once.</li>
+                    <li>Each <strong>3×3 box</strong> must contain the digits 1‑9 exactly once.</li>
+                </ul>
+                <p>A well‑formed puzzle has only one solution, and you never need to guess.</p>
+            </section>
+
+            <!-- EASY STRATEGIES -->
+            <section class="learn-card">
+                <h2 class="learn-section-title">🟢 Basic Strategies</h2>
+                <ul class="strategy-list">
+                    <li class="strategy-item">
+                        <h3>Naked Single</h3>
+                        <p>A cell has only one possible number because all other numbers already appear in its row, column, or box. Just place it!</p>
+                    </li>
+                    <li class="strategy-item">
+                        <h3>Hidden Single</h3>
+                        <p>A number can only go in one cell within a row, column, or box, even if that cell has other candidates.</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- INTERMEDIATE STRATEGIES -->
+            <section class="learn-card">
+                <h2 class="learn-section-title">🟡 Intermediate Techniques</h2>
+                <ul class="strategy-list">
+                    <li class="strategy-item">
+                        <h3>Naked Pair</h3>
+                        <p>Two cells in the same unit (row/column/box) share exactly the same two candidates. Those candidates can be eliminated from all other cells in that unit.</p>
+                        <p class="example-note">Example: if cells A and B both have candidates {4,7}, no other cell in that row can contain 4 or 7.</p>
+                    </li>
+                    <li class="strategy-item">
+                        <h3>Hidden Pair</h3>
+                        <p>Two numbers appear exactly in the same two cells of a unit, hidden among other candidates. All other candidates can be removed from those two cells, leaving only the pair.</p>
+                    </li>
+                    <li class="strategy-item">
+                        <h3>Pointing Pair / Box‑Line Reduction</h3>
+                        <p>If a candidate appears only in one row or column within a box, it can be eliminated from the rest of that row/column outside the box.</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- ADVANCED STRATEGIES -->
+            <section class="learn-card">
+                <h2 class="learn-section-title">🔴 Advanced Techniques</h2>
+                <ul class="strategy-list">
+                    <li class="strategy-item">
+                        <h3>X‑Wing</h3>
+                        <p>When a candidate appears exactly twice in two rows, and those occurrences align in the same two columns, you can eliminate that candidate from other cells in those columns (and vice‑versa with rows).</p>
+                    </li>
+                    <li class="strategy-item">
+                        <h3>Swordfish</h3>
+                        <p>A 3‑row / 3‑column extension of X‑Wing. If a candidate appears in exactly three rows and aligns in three columns, it can be removed from those columns in other rows.</p>
+                    </li>
+                    <li class="strategy-item">
+                        <h3>XY‑Wing / Y‑Wing</h3>
+                        <p>A chain of three cells with exactly two candidates each, connected in a way that forces a common candidate to be eliminated from cells that see both ends.</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- INTERACTIVE PRACTICE (4×4 MINI SUDOKU) -->
+            <section class="learn-card interactive">
+                <h2 class="learn-section-title">🕹️ Practice: Mini Sudoku (4×4)</h2>
+                <p>Try a smaller 4×4 grid with digits 1‑4 and 2×2 boxes. Apply the same rules!</p>
+                <div class="mini-grid-container">
+                    <table id="mini-grid" class="mini-sudoku-table"></table>
+                </div>
+                <div class="mini-actions" style="margin-top:1rem;">
+                    <button id="mini-check-btn" class="btn-secondary">✅ Check</button>
+                    <button id="mini-reset-btn" class="btn-secondary">🔄 Reset</button>
+                </div>
+                <div id="mini-message" class="message"></div>
+            </section>
+
+            <footer style="margin-top:2rem; text-align:center; color:var(--text-muted);">
+                <p>Practice daily – logic is a muscle!</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="components/sidebar.js"></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/loader.js" defer></script>
+    <script src="js/tab-switch.js" defer></script>
+    <script src="js/ai_solver.js" defer></script>
+    <script src="js/solve.js" defer></script>
+    <script src="js/creator.js" defer></script>
+    <script src="js/cycle.js" defer></script>
+    <!-- Inline mini‑grid logic – safely waits for DOM -->
+    <script>
+        (function() {
+            function initMiniSudoku() {
+                const miniGrid = document.getElementById('mini-grid');
+                const checkBtn = document.getElementById('mini-check-btn');
+                const resetBtn = document.getElementById('mini-reset-btn');
+                const miniMsg = document.getElementById('mini-message');
+
+                if (!miniGrid || !checkBtn || !resetBtn || !miniMsg) {
+                    // not on learn page or elements missing
+                    return;
+                }
+
+                // Pre-designed 4x4 puzzle (digits 1-4, 2x2 boxes)
+                const puzzle4x4 = [
+                    [1, 0, 0, 4],
+                    [0, 4, 1, 0],
+                    [0, 2, 4, 0],
+                    [4, 0, 0, 2]
+                ];
+                const solution4x4 = [
+                    [1, 3, 2, 4],
+                    [2, 4, 1, 3],
+                    [3, 2, 4, 1],
+                    [4, 1, 3, 2]
+                ];
+
+                function renderMini(puzzle) {
+                    miniGrid.innerHTML = '';
+                    for (let r = 0; r < 4; r++) {
+                        const tr = document.createElement('tr');
+                        for (let c = 0; c < 4; c++) {
+                            const td = document.createElement('td');
+                            const val = puzzle[r][c];
+                            if (val !== 0) {
+                                td.textContent = val;
+                                td.classList.add('given');
+                            } else {
+                                const input = document.createElement('input');
+                                input.type = 'text';
+                                input.maxLength = 1;
+                                input.inputMode = 'numeric';
+                                input.classList.add('mini-cell-input');
+                                input.addEventListener('input', function() {
+                                    this.value = this.value.replace(/[^1-4]/g, '');
+                                });
+                                td.appendChild(input);
+                            }
+                            tr.appendChild(td);
+                        }
+                        miniGrid.appendChild(tr);
+                    }
+                }
+
+                // Initial render
+                renderMini(puzzle4x4);
+
+                // Check button
+                checkBtn.addEventListener('click', function() {
+                    const inputs = miniGrid.querySelectorAll('input');
+                    let correct = true;
+                    for (let i = 0; i < inputs.length; i++) {
+                        const r = Math.floor(i / 4);
+                        const c = i % 4;
+                        const val = parseInt(inputs[i].value) || 0;
+                        if (val !== solution4x4[r][c]) {
+                            correct = false;
+                            break;
+                        }
+                    }
+                    miniMsg.textContent = correct
+                        ? '🎉 Perfect! You solved the mini puzzle.'
+                        : '❌ Not quite right. Keep trying.';
+                });
+
+                // Reset button
+                resetBtn.addEventListener('click', function() {
+                    renderMini(puzzle4x4);
+                    miniMsg.textContent = '';
+                });
+            }
+
+            // Ensure runs after DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initMiniSudoku);
+            } else {
+                initMiniSudoku();
+            }
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SudokuForge – Solve</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/cursor.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <style>
+        /* Additional button styles */
+        .btn-ai {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid var(--secondary);
+            background: var(--bg-card);
+            color: var(--secondary);
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            margin: 0.25rem;
+        }
+        .btn-ai:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        .btn-hint {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid #E8A735; /* amber */
+            background: #fff;
+            color: #E8A735;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            margin: 0.25rem;
+        }
+        .btn-hint:hover {
+            background: #E8A735;
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        .highlight-hint {
+            background-color: #fff3cd !important;
+            transition: background 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div id="loader-overlay">
+        <div class="loader-spinner"></div>
+        <div class="loader-tip-box" id="tip-text">Loading tip...</div>
+    </div>
+
+    <div class="cursor" id="cursor-dot"></div>
+    <div class="cursor-trail" id="cursor-trail"></div>
+
+    <div class="app-container">
+        <aside id="sidebar-container"></aside>
+        <main class="main-content">
+            <div class="solve-header">
+                <h1>🔧 Solve a Puzzle</h1>
+                <div class="difficulty-selector">
+                    <button class="diff-btn active" data-diff="easy">Easy</button>
+                    <button class="diff-btn" data-diff="moderate">Moderate</button>
+                    <button class="diff-btn" data-diff="hard">Hard</button>
+                    <button class="diff-btn" data-diff="gentle">Gentle</button>
+                    <button class="diff-btn" data-diff="diabolical">Diabolical</button>
+                </div>
+                <div class="action-buttons">
+                    <button id="new-game-btn" class="btn-primary">✨ New Game</button>
+                    <button id="check-solution-btn" class="btn-secondary">✅ Check Solution</button>
+                    <button id="ai-solve-btn" class="btn-ai">🤖 Solve with AI</button>
+                    <button id="hint-btn" class="btn-hint">💡 Hint</button>
+                </div>
+                <div id="solve-message" class="message"></div>
+            </div>
+
+            <div class="sudoku-grid-container">
+                <table id="sudoku-grid" class="sudoku-table"></table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts – ai_solver before solve, hint before solve -->
+    <script src="components/sidebar.js"></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/loader.js" defer></script>
+    <script src="js/tab-switch.js" defer></script>
+    <script src="js/ai_solver.js" defer></script>
+    <script src="js/hint.js" defer></script>
+    <script src="js/solve.js" defer></script>
+    <script src="js/creator.js" defer></script>
+    <script src="js/cycle.js" defer></script>
+</body>
+</html>

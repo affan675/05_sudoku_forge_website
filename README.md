@@ -29,6 +29,7 @@ No frameworks, no libraries, no backend – just clean, hand‑crafted code.
 - **JavaScript (ES6)** – Modular scripts, backtracking algorithms, DOM manipulation, `localStorage`
 - **Google Fonts** – Inter (professional, clean typeface)
 
+```
 ## 📁 Project Structure
 SudokuForge/
 ├── index.html # Homepage
@@ -58,7 +59,7 @@ SudokuForge/
 │ ├── sidebar.html # Reusable sidebar component
 │ └── sidebar.js # Active link highlighting
 └── assets/ # Empty folder for future assets
-
+```
 
 ## 🎨 Color Palette
 
@@ -115,7 +116,7 @@ Mother tongue: Bengali
 
 ## 📜 License
 
-This project is open‑source. Feel free to learn, modify, and share.
+This project has valid MIT license. Feel free to learn, modify, and share (with rules and regulations).
 
 ---
 

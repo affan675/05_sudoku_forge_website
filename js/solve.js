@@ -264,39 +264,6 @@ if (document.readyState === 'loading') {
     initSolvePage();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ---------- Page initialisation (with Hint button) ----------
 function initSolvePage() {
     const gridTable = document.getElementById('sudoku-grid');

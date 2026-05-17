@@ -1,123 +1,207 @@
-# ⚒️ SudokuForge
+<!--- New polished README for repository -->
 
-**Forge your logic. Solve the grid.**
-
-A fully offline, single‑user Sudoku web application built with pure HTML, CSS, and JavaScript.  
-No frameworks, no libraries, no backend – just clean, hand‑crafted code.
-
----
-
-## 🚀 Features
-
-- **🎮 Play Sudoku** – 5 difficulty levels (Easy, Moderate, Hard, Gentle, Diabolical) with unique, dynamically generated puzzles.
-- **🧠 AI Solver** – Backtracking algorithm that solves any valid 9×9 Sudoku instantly.
-- **💡 Hint System** – Get a logical hint (naked single) when you’re stuck, with incorrect‑entry detection.
-- **📚 Learn Section** – Detailed explanations of rules and techniques (Naked Single, Hidden Pair, X‑Wing, etc.) plus an interactive 4×4 mini Sudoku.
-- **🔄 Cross‑Page Integration** – Send puzzles from the Play page to the Solver with one click.
-- **🎨 Custom Cursor & Loader** – A stylish custom cursor with trailing circle (desktop only) and a 3‑second loader with rotating Sudoku tips.
-- **🖼️ Animated Puzzle Cycle** – Eight SVG Sudoku grids rotate on the home page.
-- **📱 Fully Responsive** – Works seamlessly on phone, tablet, and PC.
-- **🧩 Sidebar Navigation** – Emoji‑based sidebar with active‑page highlighting.
-- **✨ Creator Profile** – A dedicated page about Affan Adil, the young mind behind the project.
+<p align="center">
+   <img alt="SudokuForge" src="assets/screenshots/dextop-view_home_page.png" width="160" style="border-radius:12px;"/>
+  
+   <h1 align="center">SudokuForge</h1>
+   <p align="center"><strong>Forge your logic. Solve the grid.</strong></p>
+   <p align="center">
+      <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" />
+      <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" />
+      <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
+      <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge&logo=github" alt="MIT License" />
+      <a href="#live-demo"><img src="https://img.shields.io/badge/Live%20Demo-Open-blue?style=for-the-badge&logo=vercel" alt="Live Demo"/></a>
+   </p>
+</p>
 
 ---
 
-## 🛠️ Tech Stack
+## Short Description
 
-- **HTML5** – Semantic, accessible markup
-- **CSS3** – Custom properties (variables), Flexbox/Grid, animations, responsive media queries
-- **JavaScript (ES6)** – Modular scripts, backtracking algorithms, DOM manipulation, `localStorage`
-- **Google Fonts** – Inter (professional, clean typeface)
+Minimal, offline-first Sudoku web app built with plain HTML, CSS and JavaScript. Includes a generator, an AI backtracking solver, a hint system, an interactive learn page, and responsive UI designed for portfolio showcase.
 
+---
+
+## Badges
+
+- **Languages:** HTML · CSS · JavaScript
+- **License:** MIT
+- **Status:** Prototype / Portfolio
+
+> Badges above are generated from detected project technologies (HTML, CSS, JavaScript).
+
+---
+
+## Features
+
+- Clean, framework-free codebase — ideal for learning and customization
+- Puzzle generator with five difficulty levels
+- Fast AI solver (backtracking) and cross-page puzzle transfer
+- Logical hint engine and mistake detection
+- Responsive design, custom cursor, animated loader and home page visuals
+- Lightweight, fully client-side — runs without a server
+
+---
+
+## Screenshots
+
+Below are in-repo screenshots captured from the app. Click to view full resolution.
+
+<details>
+<summary>View screenshots</summary>
+
+<table>
+   <tr>
+      <td align="center">
+         <img src="assets/screenshots/dextop-view_home_page.png" alt="Home" width="280" style="border-radius:8px"/>
+         <p><em>Home — Animated puzzle cycle</em></p>
+      </td>
+      <td align="center">
+         <img src="assets/screenshots/solve_page.JPG" alt="Play" width="280" style="border-radius:8px"/>
+         <p><em>Play — Interactive solver UI</em></p>
+      </td>
+      <td align="center">
+         <img src="assets/screenshots/solve_options.JPG" alt="Options" width="280" style="border-radius:8px"/>
+         <p><em>Difficulty & options</em></p>
+      </td>
+   </tr>
+   <tr>
+      <td align="center">
+         <img src="assets/screenshots/creator_page.JPG" alt="Creator" width="280" style="border-radius:8px"/>
+         <p><em>Creator — About page</em></p>
+      </td>
+      <td align="center">
+         <img src="assets/screenshots/creator_details.JPG" alt="Creator details" width="280" style="border-radius:8px"/>
+         <p><em>Creator details & profile</em></p>
+      </td>
+      <td align="center">
+         <img src="assets/screenshots/learn_page.JPG" alt="Learn" width="280" style="border-radius:8px"/>
+         <p><em>Learn — Mini tutorials & 4×4 practice</em></p>
+      </td>
+   </tr>
+   <tr>
+      <td align="center">
+         <img src="assets/screenshots/practice.JPG" alt="Practice" width="280" style="border-radius:8px"/>
+         <p><em>Practice grid</em></p>
+      </td>
+      <td align="center">
+         <img src="assets/screenshots/side_navbar.JPG" alt="Sidebar" width="280" style="border-radius:8px"/>
+         <p><em>Sidebar navigation</em></p>
+      </td>
+      <td align="center">
+         <img src="assets/screenshots/loader.JPG" alt="Loader" width="280" style="border-radius:8px"/>
+         <p><em>Loader with rotating tips</em></p>
+      </td>
+   </tr>
+   <tr>
+      <td align="center">
+         <img src="assets/screenshots/custom_cursor.JPG" alt="Cursor" width="280" style="border-radius:8px"/>
+         <p><em>Custom cursor (desktop)</em></p>
+      </td>
+      <td align="center">
+         <img src="assets/screenshots/ai_solver.JPG" alt="AI Solver" width="280" style="border-radius:8px"/>
+         <p><em>AI Solver — backtracking results</em></p>
+      </td>
+      <td></td>
+   </tr>
+</table>
+
+</details>
+
+---
+
+## Live Demo
+
+- Placeholder: open `index.html` locally or use GitHub Pages / Live Server to preview.
+
+---
+
+## Tech Stack
+
+- HTML5 — semantic markup and accessibility-focused structure
+- CSS3 — variables, Grid/Flexbox, animations
+- JavaScript (ES6) — puzzle generator, solver, UI logic
+
+---
+
+## Installation / Setup
+
+1. Clone the repository:
+
+```bash
+git clone <your-repo-url>
+cd sudokuforge
 ```
-## 📁 Project Structure
-SudokuForge/
-├── index.html # Homepage
-├── solve.html # Interactive Sudoku play page
-├── solver.html # AI solver page
-├── learn.html # Learning hub with mini Sudoku
-├── settings.html # Future settings placeholder
-├── creator.html # About the creator
-├── css/
-│ ├── variables.css # Color palette & design tokens
-│ ├── style.css # Global styles & Sudoku grid
-│ ├── responsive.css # Media queries
-│ ├── loader.css # Full‑screen loader & spinner
-│ ├── cursor.css # Custom cursor & trail
-│ ├── animations.css # Keyframe animations
-│ └── sidebar.css # Sidebar navigation styling
-├── js/
-│ ├── main.js # Sidebar injection, cursor, global init
-│ ├── cycle.js # Home page SVG puzzle rotation
-│ ├── solve.js # Puzzle generator, renderer, play logic
-│ ├── ai_solver.js # Backtracking Sudoku solver
-│ ├── hint.js # Logical hint engine
-│ ├── tab-switch.js # Browser tab title updater
-│ ├── loader.js # Loader overlay & tips
-│ └── creator.js # Typing animation for creator page
-├── components/
-│ ├── sidebar.html # Reusable sidebar component
-│ └── sidebar.js # Active link highlighting
-└── assets/ # Empty folder for future assets
+
+2. Open locally: double-click `index.html`, or start a simple server:
+
+```bash
+# Install serve (optional)
+npm install -g serve
+serve .
 ```
 
-## 🎨 Color Palette
-
-| Usage | Color | Hex |
-|-------|-------|-----|
-| Page background | Off‑white | `#F7F9FC` |
-| Cards / sections | White | `#FFFFFF` |
-| Primary accent | Deep blue | `#2C6E9E` |
-| Secondary accent | Warm amber | `#E8A735` |
-| Main text | Dark slate | `#1E2A3A` |
-| Secondary text | Muted gray | `#5A6C7E` |
-| Grid lines | Soft blue‑gray | `#B0C4DE` |
+3. For development, use VS Code Live Server for CORS-friendly component fetches.
 
 ---
 
-## 🚦 Getting Started
+## Usage
 
-1. **Download or clone** this repository.
-2. Open **`index.html`** in any modern browser (Chrome, Firefox, Edge, Safari).
-3. No server required – all files run directly from the file system (`file://` protocol), except the sidebar fetch may need a local server for CORS.  
-   *Tip: Use VS Code’s Live Server extension or run `npx serve .` if sidebar doesn’t load.*
-
----
-
-## 🧩 Usage
-
-### 🎮 Play (solve.html)
-- Select a difficulty and click **New Game**.
-- Click any empty cell and type a number (1‑9).
-- Use **Check Solution** to verify your answers.
-- Click **Hint** to reveal one logical cell (must have no mistakes).
-- Click **Solve with AI** to send the puzzle to the solver page.
-
-### 🤖 Solver (solver.html)
-- Enter any Sudoku puzzle manually, or receive one from the Play page.
-- Click **Solve** to see the complete solution.
-
-### 📚 Learn (learn.html)
-- Read through rules and strategies.
-- Practice on the interactive 4×4 grid.
+- Play: open `solve.html`, choose difficulty, click **New Game**
+- Hint: click **Hint** to reveal a logical move
+- Solve: click **Solve with AI** to view the complete solution or visit `solver.html`
 
 ---
 
-## 🙋‍♂️ About the Creator
+## Folder Structure
 
-**Affan Adil**  
-Age 14 | Class 8 | India 🇮🇳  
-PM Shri Jawahar Navodaya Vidyalaya  
-Mother tongue: Bengali  
-
-*“A polymath in training. Building tech & business empire.”*
+```text
+./
+├─ index.html
+├─ solve.html
+├─ solver.html
+├─ learn.html
+├─ creator.html
+├─ css/ (variables, styles, responsive, loader, cursor)
+├─ js/  (main, solve, ai-solver, hint, loader)
+├─ components/ (sidebar)
+└─ assets/screenshots/ (project screenshots)
+```
 
 ---
 
-## 📜 License
+## Contribution
 
-This project has valid MIT license. Feel free to learn, modify, and share (with rules and regulations).
+- Contributions are welcome — file issues or open a pull request with a clear description. Keep changes focused and add tests or screenshots for UI updates.
+
+Suggested contributions:
+- Improve generator randomness and difficulty tuning
+- Add advanced logical hint techniques (hidden pairs, X-Wing)
+- Add automated test suite and CI
 
 ---
 
-Made with ❤️ and pure logic.
+## Future Improvements
+
+- Publish on GitHub Pages with a live demo URL
+- Add progressive web app (PWA) support and offline caching
+- Advanced hint strategies and step-by-step solution explanations
+- Accessibility audit and keyboard-first navigation improvements
+
+---
+
+## License
+
+This project is released under the MIT License.
+
+---
+
+## Author
+
+Affan Adil — Student & developer
+
+Portfolio: (add link) · Contact: (add email)
+
+---
+
+Made with ❤️ — designed to teach and showcase clean front-end engineering.

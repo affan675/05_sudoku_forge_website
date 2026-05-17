@@ -14,6 +14,14 @@
     <link rel="stylesheet" href="css/cursor.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/sidebar.css">
+    <style>
+    /* Home photo carousel styles (moderate size, square, centered) */
+    #photo-carousel{display:flex;align-items:center;justify-content:center;margin:18px 0}
+    #photo-carousel img{width:320px;height:320px;object-fit:cover;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.12);transition:opacity 400ms ease}
+    #photo-carousel img.hidden{opacity:0}
+    #photo-carousel img.visible{opacity:1}
+    @media (max-width:600px){#photo-carousel img{width:220px;height:220px}}
+    </style>
 </head>
 <body>
     <div id="loader-overlay">
@@ -32,6 +40,9 @@
                 <div class="home-text">
                     <h1>Sharpen your mind. Forge your logic.</h1>
                     <p>Challenge yourself with classic Sudoku puzzles, learn solving techniques, and use our AI solver to conquer any grid. Forge your path to mastery.</p>
+                </div>
+                <div id="photo-carousel" aria-hidden="false">
+                    <img id="carousel-img" class="visible" src="assets/sudoku/1.JPG" alt="Sudoku photo placeholder">
                 </div>
             </section>
 
@@ -64,6 +75,7 @@
 
     <script src="components/sidebar.js"></script>
     <script src="js/main.js" defer></script>
+    <script src="js/home-carousel.js" defer></script>
     <script src="js/loader.js" defer></script>
     <script src="js/tab-switch.js" defer></script>
     <script src="js/cycle.js" defer></script>

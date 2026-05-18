@@ -40,6 +40,10 @@ Minimal, offline-first Sudoku web app built with plain HTML, CSS and JavaScript.
 - Logical hint engine and mistake detection
 - Responsive design, custom cursor, animated loader and home page visuals
 - Lightweight, fully client-side — runs without a server
+- ⌨️ **Keyboard shortcuts system** — Play entirely with keyboard (1-9, Delete, N, S, H, U, R, Arrow keys)
+- 🖱️ **Custom right-click context menu** — Quick access to cell operations (set number, clear, hint, notes)
+- ⚙️ **Settings & User Profile dashboard** — Manage preferences and view shortcuts
+- 🏆 **Achievement system** — 50 unique achievements across 15 categories (Progress, Difficulty, Speed, Skill, AI, Creation, Learning, Consistency, Milestone, Challenge, Variety, Social, Rare, Feature, Completionist)
 
 ---
 
@@ -102,7 +106,10 @@ Below are in-repo screenshots captured from the app. Click to view full resoluti
          <img src="assets/screenshots/ai_solver.JPG" alt="AI Solver" width="280" style="border-radius:8px"/>
          <p><em>AI Solver — backtracking results</em></p>
       </td>
-      <td></td>
+      <td align="center">
+         <img src="assets/screenshots/settings_user.JPG" alt="Settings" width="280" style="border-radius:8px"/>
+         <p><em>Settings & Achievements dashboard</em></p>
+      </td>
    </tr>
 </table>
 

@@ -14,6 +14,401 @@
     <link rel="stylesheet" href="css/cursor.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/sidebar.css">
+    <style>
+        /* Settings-specific styles */
+        .settings-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Toggle Tab System */
+        .settings-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 2rem;
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            width: fit-content;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+            background: rgba(44, 110, 158, 0.05);
+        }
+
+        .tab-btn.active {
+            color: white;
+            background: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Section Visibility */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Settings Section Styles */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .settings-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .settings-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .settings-card h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .settings-card p {
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Shortcuts Table */
+        .shortcuts-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .shortcuts-table th {
+            background: rgba(44, 110, 158, 0.1);
+            color: var(--primary);
+            padding: 0.8rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .shortcuts-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid var(--grid-lines);
+            color: var(--text-main);
+        }
+
+        .shortcuts-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .shortcut-key {
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            display: inline-block;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        /* Features List */
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features-list li {
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            background: rgba(44, 110, 158, 0.05);
+            border-radius: 6px;
+            border-left: 3px solid var(--secondary);
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+
+        .features-list li:hover {
+            background: rgba(44, 110, 158, 0.1);
+            transform: translateX(5px);
+        }
+
+        /* Achievements Grid */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .achievement-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+        }
+
+        .achievement-card.locked {
+            opacity: 0.6;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .achievement-card.unlocked {
+            border-color: var(--secondary);
+        }
+
+        .achievement-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .achievement-card.locked .achievement-icon {
+            opacity: 0.4;
+            filter: grayscale(100%);
+        }
+
+        .achievement-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .achievement-card.unlocked .achievement-badge {
+            background: var(--secondary);
+        }
+
+        .achievement-card.locked .achievement-badge {
+            background: var(--text-muted);
+        }
+
+        .achievement-name {
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .achievement-description {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-status {
+            font-size: 0.8rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .achievement-card.unlocked .achievement-status {
+            background: rgba(232, 167, 53, 0.2);
+            color: var(--secondary);
+        }
+
+        .achievement-card.locked .achievement-status {
+            background: rgba(90, 108, 126, 0.2);
+            color: var(--text-muted);
+        }
+
+        /* Stats Bar */
+        .achievements-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stats-item {
+            text-align: center;
+        }
+
+        .stats-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stats-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+        }
+
+        .progress-bar {
+            flex: 1;
+            margin: 0 2rem;
+            max-width: 200px;
+        }
+
+        .progress-fill {
+            height: 8px;
+            background: var(--grid-lines);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-inner {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        /* Right-Click Details */
+        .right-click-section {
+            background: linear-gradient(135deg, rgba(44, 110, 158, 0.05), rgba(232, 167, 53, 0.05));
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .right-click-options {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--grid-lines);
+        }
+
+        .option-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.8rem 0;
+        }
+
+        .option-number {
+            background: var(--secondary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .option-text {
+            flex: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .achievements-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .settings-tabs {
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            .tab-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .achievements-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .progress-bar {
+                margin: 1rem 0;
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .shortcuts-table {
+                font-size: 0.9rem;
+            }
+
+            .shortcuts-table th,
+            .shortcuts-table td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* No achievements message */
+        .no-achievements {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+
+        .no-achievements p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 <body>
     <div id="loader-overlay">
@@ -27,16 +422,109 @@
     <div class="app-container">
         <aside id="sidebar-container"></aside>
         <main class="main-content">
-            <div class="settings-placeholder">
-                <h1>⚙️ Settings</h1>
-                <div class="card">
-                    <p>✨ More options coming soon.</p>
-                    <p>We're working on custom themes, difficulty preferences, and more. Stay tuned!</p>
+            <div class="settings-container">
+                <!-- Header -->
+                <div style="margin-bottom: 2rem;">
+                    <h1>⚙️ Settings & Profile</h1>
+                    <p class="tagline">Manage your preferences and track your achievements</p>
+                </div>
+
+                <!-- Toggle Tabs -->
+                <div class="settings-tabs">
+                    <button class="tab-btn active" data-tab="settings">
+                        ⚙️ Settings
+                    </button>
+                    <button class="tab-btn" data-tab="user">
+                        👤 User Profile
+                    </button>
+                </div>
+
+                <!-- SETTINGS SECTION -->
+                <div id="settings" class="tab-content active">
+                    <div class="settings-grid">
+                        <!-- Keyboard Shortcuts Card -->
+                        <div class="settings-card">
+                            <h3>⌨️ Keyboard Shortcuts</h3>
+                            <p>Use these keyboard shortcuts to play faster and more efficiently.</p>
+                            <table class="shortcuts-table">
+                                <thead>
+                                    <tr>
+                                        <th>Key</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="shortcuts-tbody">
+                                    <!-- Populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Right-Click Menu Card -->
+                        <div class="settings-card">
+                            <h3>🖱️ Right-Click Menu</h3>
+                            <p>Right-click on any Sudoku cell for quick access to common actions.</p>
+                            <div class="right-click-section">
+                                <div id="right-click-description"></div>
+                                <div class="right-click-options" id="right-click-options">
+                                    <!-- Populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Features Card -->
+                        <div class="settings-card">
+                            <h3>✨ Interactive Features</h3>
+                            <p>Explore all the features available in SudokuForge:</p>
+                            <ul class="features-list" id="features-list">
+                                <li>🎮 <strong>Interactive Sudoku Solver:</strong> Play puzzles with 5 difficulty levels</li>
+                                <li>🤖 <strong>AI Solver:</strong> Get instant solutions using our backtracking algorithm</li>
+                                <li>💡 <strong>Smart Hints:</strong> Get helpful suggestions for the current cell</li>
+                                <li>↩️ <strong>Undo/Redo:</strong> Correct your moves with full history tracking</li>
+                                <li>🎯 <strong>Cell Highlighting:</strong> Easily navigate and select cells</li>
+                                <li>📚 <strong>Learning Center:</strong> Master Sudoku strategies and techniques</li>
+                                <li>✏️ <strong>Puzzle Creator:</strong> Design and share your own puzzles</li>
+                                <li>🔥 <strong>Achievement System:</strong> Unlock 50 unique achievements</li>
+                                <li>🎨 <strong>Custom UI:</strong> Right-click context menus for quick actions</li>
+                                <li>⌨️ <strong>Keyboard Controls:</strong> Play entirely with your keyboard</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- USER PROFILE SECTION -->
+                <div id="user" class="tab-content">
+                    <!-- Achievements Header with Stats -->
+                    <div class="achievements-header">
+                        <div class="stats-item">
+                            <div class="stats-value" id="unlocked-count">0</div>
+                            <div class="stats-label">Achievements</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill">
+                                <div class="progress-bar-inner" id="progress-inner" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="stats-item">
+                            <div class="stats-value" id="completion-percentage">0%</div>
+                            <div class="stats-label">Completion</div>
+                        </div>
+                    </div>
+
+                    <!-- Achievements Grid -->
+                    <h2 style="margin-bottom: 1.5rem; text-align: center;">🏆 Your Achievements</h2>
+                    <div class="achievements-grid" id="achievements-grid">
+                        <!-- Populated by JavaScript -->
+                    </div>
                 </div>
             </div>
+
+            <footer style="margin-top: 3rem; text-align: center; color: var(--text-muted);">
+                <p>SudokuForge &copy; 2026 &mdash; Forge your logic. Solve the grid.</p>
+            </footer>
         </main>
     </div>
 
+    <!-- Scripts -->
     <script src="components/sidebar.js"></script>
     <script src="js/main.js" defer></script>
     <script src="js/loader.js" defer></script>
@@ -45,5 +533,184 @@
     <script src="js/solve.js" defer></script>
     <script src="js/ai_solver.js" defer></script>
     <script src="js/creator.js" defer></script>
+    
+    <!-- New Settings Scripts -->
+    <script src="js/key-shortcut.js" defer></script>
+    <script src="js/right-click.js" defer></script>
+    <script src="js/achievements.js" defer></script>
+
+    <!-- Settings Page Script -->
+    <script defer>
+        /**
+         * Settings Page Functionality
+         * Handles tab switching and dynamic content rendering
+         */
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize tab switching
+            initTabSwitching();
+            
+            // Populate shortcuts table
+            populateShortcuts();
+            
+            // Populate right-click details
+            populateRightClickDetails();
+            
+            // Populate achievements
+            populateAchievements();
+        });
+
+        /**
+         * Initialize tab switching functionality
+         */
+        function initTabSwitching() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabName = button.getAttribute('data-tab');
+
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Add active class to clicked button and corresponding content
+                    button.classList.add('active');
+                    document.getElementById(tabName).classList.add('active');
+                });
+            });
+        }
+
+        /**
+         * Populate keyboard shortcuts table from KeyboardShortcuts module
+         */
+        function populateShortcuts() {
+            const tbody = document.getElementById('shortcuts-tbody');
+            
+            // Check if KeyboardShortcuts is available
+            if (typeof KeyboardShortcuts !== 'undefined' && KeyboardShortcuts.getShortcutsList) {
+                const shortcuts = KeyboardShortcuts.getShortcutsList();
+                
+                tbody.innerHTML = shortcuts.map(shortcut => `
+                    <tr>
+                        <td><span class="shortcut-key">${shortcut.key}</span></td>
+                        <td>${shortcut.description}</td>
+                    </tr>
+                `).join('');
+            } else {
+                console.warn('KeyboardShortcuts module not available');
+            }
+        }
+
+        /**
+         * Populate right-click menu details from RightClickMenu module
+         */
+        function populateRightClickDetails() {
+            // Check if RightClickMenu is available
+            if (typeof RightClickMenu !== 'undefined' && RightClickMenu.getRightClickDetails) {
+                const details = RightClickMenu.getRightClickDetails();
+                const descContainer = document.getElementById('right-click-description');
+                const optionsContainer = document.getElementById('right-click-options');
+
+                // Add description
+                descContainer.innerHTML = `<p><strong>${details.title}:</strong> ${details.description}</p>`;
+
+                // Add options
+                const optionsHTML = details.options.map((option, index) => `
+                    <div class="option-item">
+                        <div class="option-number">${index + 1}</div>
+                        <div class="option-text">${option}</div>
+                    </div>
+                `).join('');
+
+                optionsContainer.innerHTML = optionsHTML;
+            } else {
+                console.warn('RightClickMenu module not available');
+            }
+        }
+
+        /**
+         * Populate achievements from AchievementsManager module
+         */
+        function populateAchievements() {
+            const grid = document.getElementById('achievements-grid');
+            
+            // Check if AchievementsManager is available
+            if (typeof AchievementsManager !== 'undefined' && AchievementsManager.getAll) {
+                const achievements = AchievementsManager.getAll();
+                const unlockedCount = AchievementsManager.getUnlockedCount();
+                const completionPercentage = AchievementsManager.getCompletionPercentage();
+
+                // Update stats
+                document.getElementById('unlocked-count').textContent = unlockedCount;
+                document.getElementById('completion-percentage').textContent = completionPercentage + '%';
+                document.getElementById('progress-inner').style.width = completionPercentage + '%';
+
+                // Generate achievement cards
+                const achievementCards = achievements.map(achievement => {
+                    const isUnlocked = achievement.unlocked;
+                    const statusClass = isUnlocked ? 'unlocked' : 'locked';
+                    const statusText = isUnlocked ? '✓ Unlocked' : '🔒 Locked';
+                    const badge = isUnlocked ? '⭐' : '🔐';
+
+                    return `
+                        <div class="achievement-card ${statusClass}">
+                            <div class="achievement-badge">${badge}</div>
+                            <div class="achievement-icon">${getAchievementEmoji(achievement.category)}</div>
+                            <div class="achievement-name">${achievement.name}</div>
+                            <div class="achievement-description">${achievement.description}</div>
+                            <div class="achievement-status">${statusText}</div>
+                        </div>
+                    `;
+                }).join('');
+
+                grid.innerHTML = achievementCards;
+            } else {
+                console.warn('AchievementsManager module not available');
+                grid.innerHTML = `
+                    <div class="no-achievements">
+                        <p>⏳ Achievements are loading...</p>
+                        <p>Please refresh the page if they don't appear.</p>
+                    </div>
+                `;
+            }
+        }
+
+        /**
+         * Get emoji for achievement category
+         */
+        function getAchievementEmoji(category) {
+            const emojiMap = {
+                'Progress': '📈',
+                'Difficulty': '💪',
+                'Speed': '⚡',
+                'Skill': '🎯',
+                'AI': '🤖',
+                'Creation': '✨',
+                'Learning': '📚',
+                'Consistency': '🔥',
+                'Milestone': '🎖️',
+                'Challenge': '🏅',
+                'Variety': '🎨',
+                'Social': '👥',
+                'Rare': '💎',
+                'Feature': '🔧',
+                'Completionist': '🏆',
+            };
+            return emojiMap[category] || '🏆';
+        }
+
+        // Listen for achievement unlocks
+        document.addEventListener('achievement:unlocked', (event) => {
+            const achievement = event.detail.achievement;
+            console.log('🎉 Achievement unlocked event caught:', achievement.name);
+            
+            // Refresh achievements display
+            setTimeout(() => {
+                populateAchievements();
+            }, 300);
+        });
+    </script>
 </body>
 </html>

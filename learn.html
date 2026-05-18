@@ -155,6 +155,11 @@
     <script src="js/solve.js" defer></script>
     <script src="js/creator.js" defer></script>
     <script src="js/cycle.js" defer></script>
+
+       <!-- New Settings Scripts -->
+    <script src="js/key-shortcut.js" defer></script>
+    <script src="js/right-click.js" defer></script>
+    <script src="js/achievements.js" defer></script>
     <!-- Inline mini‑grid logic – safely waits for DOM -->
     <script>
         (function() {
@@ -215,13 +220,25 @@
 
                 // Check button
                 checkBtn.addEventListener('click', function() {
-                    const inputs = miniGrid.querySelectorAll('input');
+                    const cells = miniGrid.querySelectorAll('td');
                     let correct = true;
-                    for (let i = 0; i < inputs.length; i++) {
+                    for (let i = 0; i < cells.length; i++) {
                         const r = Math.floor(i / 4);
                         const c = i % 4;
-                        const val = parseInt(inputs[i].value) || 0;
-                        if (val !== solution4x4[r][c]) {
+                        const cell = cells[i];
+                        let userValue = 0;
+                        
+                        // Check if this is a given cell or a user input cell
+                        if (puzzle4x4[r][c] !== 0) {
+                            userValue = puzzle4x4[r][c];
+                        } else {
+                            const input = cell.querySelector('input');
+                            if (input && input.value) {
+                                userValue = parseInt(input.value);
+                            }
+                        }
+                        
+                        if (userValue !== solution4x4[r][c]) {
                             correct = false;
                             break;
                         }

@@ -81,7 +81,7 @@ const RightClickMenu = (() => {
                 btn.style.transform = 'scale(1)';
             });
             btn.addEventListener('click', () => {
-                triggerCustomEvent('sudoku:set-number', { number: i, cell: targetCell });
+                triggerCustomEvent('sudoku:enter-number', { number: i, cell: targetCell });
                 hideMenu();
             });
             menuContainer.appendChild(btn);
@@ -94,7 +94,7 @@ const RightClickMenu = (() => {
 
         // Action buttons
         const actions = [
-            { label: 'Clear', action: 'clear', color: '#E74C3C' },
+            { label: 'Clear', action: 'clear-cell', color: '#E74C3C' },
             { label: 'Hint', action: 'hint', color: 'var(--secondary)' },
             { label: 'Notes', action: 'notes', color: 'var(--primary)' },
         ];

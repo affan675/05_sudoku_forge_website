@@ -24,8 +24,9 @@ const KeyboardShortcuts = (() => {
 
     // Handle keyboard press events
     const handleKeyPress = (event) => {
-        // Don't trigger shortcuts in input fields or text areas
-        if (event.target.matches('input, textarea, [contenteditable]')) {
+        // Don't trigger shortcuts in standard inputs, but ALLOW them if the target is a Sudoku cell input
+        const isSudokuInput = event.target.closest('#sudoku-grid, #solver-grid');
+        if (event.target.matches('textarea, [contenteditable]') || (event.target.matches('input') && !isSudokuInput)) {
             return;
         }
 

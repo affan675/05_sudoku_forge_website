@@ -366,6 +366,54 @@ function initSolvePage() {
         }
     });
 
+    // ---------- EVENT LISTENERS FOR SHORTCUTS & CONTEXT MENU ----------
+    document.addEventListener('sudoku:enter-number', (e) => {
+        const number = e.detail.number;
+        let targetInput = e.detail.cell ? e.detail.cell.querySelector('input') : document.activeElement;
+        
+        if (targetInput && targetInput.tagName === 'INPUT' && !targetInput.parentElement.classList.contains('given')) {
+            targetInput.value = number;
+            // Trigger the input event to ensure any validation logic runs
+            targetInput.dispatchEvent(new Event('input'));
+        }
+    });
+
+    document.addEventListener('sudoku:clear-cell', (e) => {
+        let targetInput = e.detail.cell ? e.detail.cell.querySelector('input') : document.activeElement;
+        if (targetInput && targetInput.tagName === 'INPUT' && !targetInput.parentElement.classList.contains('given')) {
+            targetInput.value = '';
+        }
+    });
+
+    document.addEventListener('sudoku:navigate', (e) => {
+        const direction = e.detail.direction;
+        const currentInput = document.activeElement;
+        if (!currentInput || currentInput.tagName !== 'INPUT') return;
+
+        const td = currentInput.closest('td');
+        const tr = td.closest('tr');
+        const colIndex = Array.from(tr.cells).indexOf(td);
+        const rowIndex = Array.from(tr.parentElement.rows).indexOf(tr);
+
+        let nextRow = rowIndex;
+        let nextCol = colIndex;
+
+        if (direction === 'ArrowUp') nextRow--;
+        if (direction === 'ArrowDown') nextRow++;
+        if (direction === 'ArrowLeft') nextCol--;
+        if (direction === 'ArrowRight') nextCol++;
+
+        if (nextRow >= 0 && nextRow < 9 && nextCol >= 0 && nextCol < 9) {
+            const nextCell = gridTable.rows[nextRow].cells[nextCol];
+            const nextInput = nextCell.querySelector('input');
+            if (nextInput) nextInput.focus();
+        }
+    });
+
+    document.addEventListener('sudoku:new-game', displayPuzzle);
+    document.addEventListener('sudoku:solve', () => aiSolveBtn.click());
+    document.addEventListener('sudoku:hint', () => hintBtn.click());
+
     // Show first puzzle
     displayPuzzle();
 }
